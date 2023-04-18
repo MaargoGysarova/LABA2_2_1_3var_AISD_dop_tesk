@@ -110,6 +110,9 @@ void delete_root_T(Tree_task1<T> &tmp){
     cout << "Enter the key of root: ";
     key = check();
     tmp.erase(key, tmp.return_root());
+    while(tmp.contains(key)){
+        tmp.erase_duplicate(key, tmp.return_root());
+    }
 }
 
 //check existing root

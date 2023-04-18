@@ -38,6 +38,7 @@ public:
     Node_1<T>* search(int key,const Node_1<T>* obj);//�஢�ઠ ������ �����
     bool contains(int key);//�஢�ઠ ������ �����
     Node_1<T>* erase(int key, Node_1<T>* obj);//㤠����� �����
+    Node_1<T>* erase_duplicate(int key, Node_1<T>* obj);//㤠����� �����
 
 
     Tree_task1& operator=(const Tree_task1<T>& obj);

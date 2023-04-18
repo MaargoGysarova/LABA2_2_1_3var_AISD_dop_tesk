@@ -149,8 +149,9 @@ bool Tree_task1<T>::contains(int key) {
 
 template<typename T>
 Node_1<T>* Tree_task1<T>::erase(int key,Node_1<T>* obj) {
-    if(!root){
-        throw "Root not exist";
+    //удаление элемента из дерева
+    if(obj== nullptr){
+        return nullptr;
     }
     if(key<obj->_data){
         obj->_left = erase(key,obj->_left);
@@ -159,7 +160,11 @@ Node_1<T>* Tree_task1<T>::erase(int key,Node_1<T>* obj) {
         obj->_right = erase(key,obj->_right);
     }
     else{
-        if(obj->_left== nullptr){
+        if (obj->_left == nullptr && obj->_right == nullptr) {
+            delete obj;
+            return nullptr;
+        }
+        else if(obj->_left== nullptr){
             Node_1<T>* tmp = obj->_right;
             delete obj;
             return tmp;
@@ -173,20 +178,53 @@ Node_1<T>* Tree_task1<T>::erase(int key,Node_1<T>* obj) {
         obj->_data = tmp->_data;
         obj->_right = erase(tmp->_data,obj->_right);
     }
-    if (contains(key)){
-        //удаление узла с повторяющимися элементами
-        if (obj->_right->_data == obj->_data) {
-            while (obj->_right != nullptr && obj->_right->_data == obj->_data) {
-                obj = obj->_right;
-            }
-            return erase(key, obj);
-        }
-
-
-    }
     return obj;
 }
 
+template<class T>
+Node_1<T> *Tree_task1<T>::erase_duplicate(int key, Node_1<T> *obj) {
+    if(obj== nullptr){
+        return nullptr;
+    }
+    if(key<obj->_data){
+        obj->_left = erase_duplicate(key,obj->_left);
+    }
+    else if(key>obj->_data){
+        obj->_right = erase_duplicate(key,obj->_right);
+    }
+    else{
+        if (obj->_left == nullptr && obj->_right == nullptr) {
+            delete obj;
+            return nullptr;
+        }
+        else if(obj->_left== nullptr){
+            Node_1<T>* tmp = obj->_right;
+            delete obj;
+            return tmp;
+        }
+        else if(obj->_right== nullptr){
+            Node_1<T>* tmp = obj->_left;
+            delete obj;
+            return tmp;
+        }
+        if(obj->_data<obj->_father->_data){
+            obj->_father->_left = obj->_right;
+            obj->_right->_father = obj->_father;
+        }
+        else if(obj->_data>obj->_father->_data){
+            obj->_father->_right = obj->_right;
+            obj->_right->_father = obj->_father;
+        }
+        delete obj;
+}
+    if (obj!= nullptr){
+        return obj;
+
+    }
+    else{
+        return nullptr;
+    }
+}
 template<class T>
 Node_1<T> *Tree_task1<T>::minNode(Node_1<T> *obj) {
     Node_1<T>* tmp = obj;
