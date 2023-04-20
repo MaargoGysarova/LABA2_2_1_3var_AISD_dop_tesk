@@ -258,5 +258,6 @@ size_t Tree_task1<T>::count(int x, Node_1<T> *obj) {
 
 }
 
+
 template class Tree_task1<int>;
 

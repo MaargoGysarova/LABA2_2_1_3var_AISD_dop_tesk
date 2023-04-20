@@ -34,18 +34,17 @@ public:
     Tree_task1(const Tree_task1& obj);
 
     void print_Tree(const Node_1<T>* p,int level)const;
-    Node_1<T>* insert(struct Node_1<T>* _root , int key);//��⠢�� �����
-    Node_1<T>* search(int key,const Node_1<T>* obj);//�஢�ઠ ������ �����
-    bool contains(int key);//�஢�ઠ ������ �����
-    Node_1<T>* erase(int key, Node_1<T>* obj);//㤠����� �����
-    Node_1<T>* erase_duplicate(int key, Node_1<T>* obj);//㤠����� �����
+    Node_1<T>* insert(struct Node_1<T>* _root , int key);
+    Node_1<T>* search(int key,const Node_1<T>* obj);
+    bool contains(int key);
+    Node_1<T>* erase(int key, Node_1<T>* obj);
+    Node_1<T>* erase_duplicate(int key, Node_1<T>* obj);
 
 
     Tree_task1& operator=(const Tree_task1<T>& obj);
     Node_1<T>* minNode(Node_1<T>* obj);
     size_t count(int x, Node_1<T>* obj);
 };
-
 
 
 

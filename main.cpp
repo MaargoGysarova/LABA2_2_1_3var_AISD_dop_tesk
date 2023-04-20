@@ -84,10 +84,6 @@ void create_new_tree_T(Tree_task1<T> &tmp){
     while(i<size_tree){
         cout << "Enter the key["<<i<< "]" << " of root: ";
         cin >> key;
-        while(tmp.contains(key)){
-            cout << "This key already exist. Enter another key: ";
-            cin >> key;
-        }
         tmp.insert(tmp.return_root(),key);
         i++;
     }
@@ -111,7 +107,7 @@ void delete_root_T(Tree_task1<T> &tmp){
     key = check();
     tmp.erase(key, tmp.return_root());
     while(tmp.contains(key)){
-        tmp.erase_duplicate(key, tmp.return_root());
+        tmp.erase(key, tmp.return_root());
     }
 }
 
@@ -133,7 +129,11 @@ void print_tree_T(Tree_task1<T> &tmp){
     tmp.print_Tree(tmp.return_root(),3);
 }
 
-
+//балансировка дерева
+template<typename T>
+void balance_tree_T(Tree_task1<T> &tmp){
+    tmp.balance(tmp.return_root());
+}
 
 //создание дерева и заполнение его случ значениями
 template<typename T>
@@ -273,6 +273,7 @@ int main() {
                 case 5:
                     print_tree_T(tmp);
                     break;
+
                 case 6:
                     return 0;
                 default:
